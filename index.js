@@ -1,9 +1,11 @@
+'use strict';
+
 var fs = require('fs');
 var path = require('path');
 
 function findImportFile(realFilePath, currentList, stackLevel) {
-    var regex = /@(require|import) '(.+?)(\.styl)?'/g,
-        match;
+    var regex = /@(require|import) '(.+?)(\.styl)?'/g;
+    var match;
     if (currentList[realFilePath] === false || currentList[realFilePath] > 1 || !fs.existsSync(realFilePath)) {
         //fs.appendFileSync('import.txt', JSON.stringify(currentList));
         return currentList;
@@ -28,7 +30,7 @@ function checkForNewerImports(stylusFile, mTime, include) {
     stylusFile = path.resolve(stylusFile);
     if (fs.existsSync(stylusFile)) {
         var baseStat = fs.statSync(stylusFile);
-        if (baseStat.mtime > mTime && !isCalled) {
+        if (baseStat.mtime > mTime) {
             include(true);
             return;
         }
@@ -49,6 +51,7 @@ function checkForNewerImports(stylusFile, mTime, include) {
     include(false);
     return;
 }
+
 module.exports = function(detail, include) {
     if (detail.task === 'stylus') {
         checkForNewerImports(detail.path, detail.time, include);
