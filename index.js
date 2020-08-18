@@ -2,6 +2,8 @@
 
 var fs = require('fs');
 var path = require('path');
+// Regex list mean if file change match one in this list => include all
+var globalInclude = {};
 
 function findImportFile(realFilePath, currentList, stackLevel) {
     var regex = /@(require|import) '(.+?)(\.styl)?'/g;
@@ -22,6 +24,13 @@ function findImportFile(realFilePath, currentList, stackLevel) {
             currentList = Object.assign(currentList, findImportFile(importFile, currentList, stackLevel + 1));
         }
     }
+    Object.keys(globalInclude).forEach(includeFile => {
+        globalInclude[includeFile].forEach(includeRegex => {
+            if (new RegExp(includeRegex).test(realFilePath)) {
+                currentList[includeFile] = 1;
+            }
+        });
+    });
     return currentList;
 }
 
@@ -56,4 +65,11 @@ module.exports = function(detail, include) {
         include(false);
     }
 };
+/**
+ * 
+ * @param {Array} _globalInclude GlobalInclude. Example: {'src/views/toolbar.styl': ['portal.styl']}
+ */
+module.exports.setGlobalInclude = function(_globalInclude) {
+    globalInclude = _globalInclude;
+}
 
