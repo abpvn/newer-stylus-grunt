@@ -1,0 +1,30 @@
+{
+  "name": "newer-stylus-grunt",
+  "version": "1.0.0",
+  "description": "Allow build newer stylus file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abpvn/newer-stylus-grunt.git"
+  },
+  "keywords": [
+    "grunt",
+    "stylus",
+    "newer"
+  ],
+  "author": "hoangrio",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abpvn/newer-stylus-grunt/issues"
+  },
+  "homepage": "https://github.com/abpvn/newer-stylus-grunt#readme",
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-newer": "^1.3.0"
+  }
+}
