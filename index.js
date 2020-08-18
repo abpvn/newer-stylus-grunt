@@ -7,7 +7,6 @@ function findImportFile(realFilePath, currentList, stackLevel) {
     var regex = /@(require|import) '(.+?)(\.styl)?'/g;
     var match;
     if (currentList[realFilePath] === false || currentList[realFilePath] > 1 || !fs.existsSync(realFilePath)) {
-        //fs.appendFileSync('import.txt', JSON.stringify(currentList));
         return currentList;
     }
     var fileDir = path.dirname(realFilePath);
@@ -37,8 +36,6 @@ function checkForNewerImports(stylusFile, mTime, include) {
     }
     var importedFiles = findImportFile(stylusFile, {}, 0);
     delete importedFiles[stylusFile]; //It is checked above
-    //src/pages/admin-super-user-edit
-    //fs.appendFileSync('imported.txt', "[" + stylusFile + "]: \n" + JSON.stringify(importedFiles) + "\n\n");
     for (var importFile in importedFiles) {
         if (fs.existsSync(importFile)) {
             var stat = fs.statSync(importFile);
@@ -59,4 +56,4 @@ module.exports = function(detail, include) {
         include(false);
     }
 };
-exports.checkForNewerImports = checkForNewerImports;
+
