@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         newer: {
             options: {
-                override: unction(detail, include) {
+                override: function(detail, include) {
                     if (detail.task === 'stylus') {
                         newerStylusGrunt.checkForNewerImports(detail.path, detail.time, include);
                     } else {
