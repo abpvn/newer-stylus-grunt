@@ -49,7 +49,7 @@ function checkForNewerImports(stylusFile, mTime, include) {
     include(false);
     return;
 }
-modules.export = function(detail, include) {
+module.exports = function(detail, include) {
     if (detail.task === 'stylus') {
         checkForNewerImports(detail.path, detail.time, include);
     } else {
