@@ -1,6 +1,6 @@
 {
   "name": "newer-stylus-grunt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Allow build newer stylus file",
   "main": "index.js",
   "scripts": {

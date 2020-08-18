@@ -33,7 +33,7 @@ module.exports = function(grunt) {
                     } else {
                         include(false);
                     }
-                },,
+                },
             }
         },
         //Anything else
